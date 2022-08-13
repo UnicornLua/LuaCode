@@ -14,7 +14,7 @@
 --]]
 
 --    file = io.open(filename [, mode])
---    mode 的形式有 
+--    mode 的形式有
 --    r  （r+） 文件读取，文件必须存在，否则会报错。
 --    w   (w+)  文件写入，文件有内容直接被清空，文件不存在会创建新文件
 --    a   (a+)  文件追加，文件内容在末尾追加
@@ -23,7 +23,7 @@
 ---------------------------------------------------------------------------------------
 
 -- 只读方式打开文件
-file = io.open("io/file/test.txt", "r")
+local file = io.open("io/file/test.txt", "r")
 
 -- 设置默认的输入文件
 io.input(file)
@@ -35,7 +35,7 @@ print(io.read())
 io.close(file)
 
 -- 以附加的方式打开只读文件
-file = io.open("io/file/test.txt","a")
+file = io.open("io/file/test.txt", "a")
 
 --设置默认输出文件为test.lua
 io.output(file)
@@ -43,4 +43,3 @@ io.write("-- test.lua 文件末尾注释")
 
 -- 关闭打开的文件
 io.close(file)
-

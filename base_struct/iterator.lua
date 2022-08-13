@@ -5,6 +5,18 @@
 -- 每个迭代器对象代表迭代器中的确定地址。
 -- lua 中的迭代器是一种支持指针类型的结构，它可以遍历集合的每一个元素。
 --
+-- pairs 与 ipairs  之间的区别
+-- 
+--
+--  > 区别一：适用范围的不同
+--     * pairs 即可遍历数组形式的表，也可以遍历键值对
+--     * ipairs 只能遍历数组形式的表
+--  > 区别二：遍历行为的不同
+--     * pairs 遍历的时候，当碰到 nil 会跳过，继续向后遍历，直到遍历完所有的非 nil 的元素
+--       在迭代混合形式的表的时候，内部是通过 hash 的形式来存储的，表现为：迭代的时候会先迭代数组元素，然后是键值对
+--     * ipairs 遍历的时候，当从某个索引开始遍历，碰到 nil 的时候会结束遍历
+--
+--
 --]]
 
 ----------------- 泛型 for 迭代器 -------------------------
@@ -13,10 +25,10 @@
 --下面的代码中： k,v 为变量列表，pairs(tab) 为表达式列表
 
 
-tab = {'apple','pear','strawberry','watermello'}
+local tab = { 'apple', 'pear', 'strawberry', 'watermello' }
 
-for k,v in pairs(tab) do 
-    print(k,v)
+for k, v in pairs(tab) do
+  print(k, v)
 end
 
 ----------------- for 执行过程----------------------------
@@ -47,32 +59,32 @@ end
 -- 这种无状态的迭代器的典型例子就是ipairs,它遍历数组的每一个元素，元素的索引需要是数值，
 -- 以下是一个函数实现迭代器的例子。
 
-function square(iteratorMaxCount,currentNumber)
-    if currentNumber < iteratorMaxCount then 
-        currentNumber = currentNumber + 1
-        return currentNumber, currentNumber * currentNumber
-    end
-end 
+local function square(iteratorMaxCount, currentNumber)
+  if currentNumber < iteratorMaxCount then
+    currentNumber = currentNumber + 1
+    return currentNumber, currentNumber * currentNumber
+  end
+end
 
-for i,n in square,3,0 do 
-    print(i,n)
-end 
+for i, n in square, 3, 0 do
+  print(i, n)
+end
 
 print("--------------------------------------------------")
 
 -- 迭代的状态包括被遍历的表（循环过程中不会改变的状态常量）和当前的索引下标（控制变量）
 -- ipairs 和 迭代函数都很简单，我们在Lua 中可以这样实现.
 
-function iter(a,i)
-    i = i + 1
-    local v = a[i]
-    if v then 
-        return i, v
-    end
+local function iter(a, i)
+  i = i + 1
+  local v = a[i]
+  if v then
+    return i, v
+  end
 end
 
-function ipairs(a) 
-    return iter, a, 0
+function ipairs(a)
+  return iter, a, 0
 end
 
 ---<< 2. 多状态的迭代器，多数情况下，迭代器需要保存多个状态信息而不是简单的状态常量和控制变量
@@ -81,24 +93,21 @@ end
 --不需要第二个参数。
 ------------------------------------------------------------------------------
 --以下实例，elementIterator 内部使用了闭包函数，实现计算集合大小并输出各个元素
-array = {'Google','Runboo'}
+local array = { 'Google', 'Runboo' }
 
-function elementIterator(collection)
-    local index = 0 
-    local count = #collection
-    -- 闭包函数
-    return function()
-        index = index + 1
-        if index <= count then 
-            -- 返回迭代器的当前元素
-            return collection[index]
-        end
-    end 
+local function elementIterator(collection)
+  local index = 0
+  local count = #collection
+  -- 闭包函数
+  return function()
+    index = index + 1
+    if index <= count then
+      -- 返回迭代器的当前元素
+      return collection[index]
+    end
+  end
 end
 
-for elemnt in elementIterator(array) do 
-    print(elemnt)
+for elemnt in elementIterator(array) do
+  print(elemnt)
 end
-
-
-

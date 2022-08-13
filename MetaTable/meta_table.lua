@@ -18,10 +18,10 @@
 --
 --]]
 
-mytable = {}                          -- 普通表
-mymetatable = {}                      -- 元表
-setmetatable(mytable,mymetatable)     -- 把 mymetatable 设为 mytable 的元表
+local mytable = {} -- 普通表
+local mymetatable = {} -- 元表
+setmetatable(mytable, mymetatable) -- 把 mymetatable 设为 mytable 的元表
 
-getmetatable(mytable)                 -- 这回返回mymetatable 
+getmetatable(mytable) -- 这回返回mymetatable
 --------------------------------------------------------------------------------------------
 -- __index 元方法 这是 metatable 最常用的健，

@@ -3,14 +3,17 @@
 -- [[
 --
 --  string 类型的数据，声明的时候使用 ’‘  或 ""  包裹
---  或者使用  [[  ]]  包裹一个文本块
+--  无论是单引号还是双引号，转义`\s`符号都是可以使用的，
+--
+--  使用   [[  ]]  包裹一个文本块, 文本块中的所有字符都是
+--  原本的含义。所有的转义字符都不可用
 --
 -- ]]
 
-name = 'alex'
-gender = "maria"
+local name = 'alex'
+local gender = "maria"
 
-html = [[
+local html = [[
 <html>
     <head>
         <title>this is test string block demo!!</title>
@@ -39,8 +42,8 @@ print('2 + 6')
 
 -- 字符串之间的拼接运算使用的是 ..
 
-print('2'..'6') -- 26
-print('error:'..'2009')
+print('2' .. '6') -- 26
+print('error:' .. '2009')
 
 print("----------------------------------------------------")
 
@@ -96,39 +99,35 @@ print(#'hello world')
 print(string.upper("hello"))
 print(string.lower("hello"))
 -- 3
-print(string.gsub("tomorrow",'o','e'))
-print(string.gsub("tomorrow",'o','e',2))
+print(string.gsub("tomorrow", 'o', 'e'))
+print(string.gsub("tomorrow", 'o', 'e', 2))
 -- 4
-print(string.find("hi young man,hi young man",'oun',5))
+print(string.find("hi young man,hi young man", 'oun', 5))
 -- 5
 print(string.reverse("lua"))
 -- 6
-print(string.format('values length: %d',#'values'))
+print(string.format('values length: %d', #'values'))
 -- 7
 print(string.len("anonymous"))
 -- 8
-print(string.char(98,99,100))         -- 三个编码对应的字符
-print(string.byte("abcd",2))          -- 第二个字符对应的编码
-print(string.byte("abcd"))            -- 默认转换第一个
-print(string.byte("abcd",-2))          -- 转换倒数第二个
+print(string.char(98, 99, 100)) -- 三个编码对应的字符
+print(string.byte("abcd", 2)) -- 第二个字符对应的编码
+print(string.byte("abc", 1, 3)) -- 转换 1~3 位
+print(string.byte("abcd")) -- 默认转换第一个
+print(string.byte("abcd", -2)) -- 转换倒数第二个
 print(string.char(255))
 print(string.char(0))
 -- 9
-print(string.rep('o-^-o\n',10))
+print(string.rep('o-^-o\n', 10))
 -- 10
-for word in string.gmatch("Hello lua user",'%a+') do
-    print(word)
+for word in string.gmatch("Hello lua user", '%a+') do
+  print(word)
 end
 -- 11
-print(string.match("I have 2 question for you",'%d+ %a+'))
-print(string.match("I have 2 question for you",'(%d+) (%a+)'))
+print(string.match("I have 2 question for you", '%d+ %a+'))
+print(string.match("I have 2 question for you", '(%d+) (%a+)'))
 
 -- 12
-print(string.sub("long long ago", 6, 8))  -- 6-8 号子串
-print(string.sub("long long ago", -3))    -- 最后第三个子串
-print(string.sub("long long ago", -100))  -- 最后100字符子串（超出索引，直接原样输出）
-
-
-
-
-
+print(string.sub("long long ago", 6, 8)) -- 6-8 号子串
+print(string.sub("long long ago", -3)) -- 最后第三个子串
+print(string.sub("long long ago", -100)) -- 最后100字符子串（超出索引，直接原样输出）

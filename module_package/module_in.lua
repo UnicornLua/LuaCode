@@ -13,9 +13,9 @@
 ----------------------------------------------------------------------------------------------
 
 lua 中模块加载顺序：
-
  -- lua 语言模块加载规则
  -- lua 语言的模块搜索目录存在全局变量 package.path 内,这个全局变量的初始化根据设定的`LUA-PATH`
+
     环境变量的值来初始化，找到之后会使用 package.loadfile() 加载找到的文件。
  -- 上述位置找不到对应的 lua 模块，会加载C语言程序库。
  -- lua 语言加载 C 语言程序库目录存在于全局变量 package.cpath 内, 这个全局变量的初始化是根据
@@ -43,3 +43,4 @@ local module = require("module_package.module_out")
 
 module.say()
 
+print(package.path)
