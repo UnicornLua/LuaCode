@@ -43,3 +43,25 @@ io.write("-- test.lua 文件末尾注释")
 
 -- 关闭打开的文件
 io.close(file)
+
+
+----------------------------------------------
+-- 完全模式 (以面向对象的方式来操作文件)
+----------------------------------------------
+local pfile = io.open("io/file/text.log", "r")
+
+if pfile ~= nil then
+  print(pfile:read())
+  print(pfile:read())
+  pfile:close()
+end
+
+local wfile = io.open("io/file/text.log", "a")
+
+if wfile ~= nil then
+  io:write("test total mode append content to file")
+  io:close()
+end
+
+
+

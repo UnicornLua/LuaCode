@@ -1,9 +1,10 @@
 #!/usr/local/bin/lua
 --[[
 --
--- Lua 中的错误一般是分为语法错误，程序编译期会出错，这样的异常是可以通过修改语法语句，
--- 修正错误，另外一种是运行时的错误，运行时错误编译期时不会出现错误的，程序运行过程中
--- 出现的异常，错误。没有做适当的处理导致程序异常或终止。
+-- Lua 中的错误一般是分为
+-- > 语法错误，程序编译期会出错，这样的异常是可以通过修改语法语句，修正错误，
+-- > 另外一种是运行时的错误，运行时错误编译期时不会出现错误的，程序运行过程中
+--   出现的异常，错误。没有做适当的处理导致程序异常或终止。
 --------------------------------------------------------------------------
 -- lua 中错误的处理
 --  * assert(v [,message]) 此函数会针对第一个表达式进行判定，当表达式为True时，不做任何处理
@@ -34,48 +35,50 @@
 -- 
 --]]
 
-function hello(str)
-    print(str)
-    --error("error...")
+local function hello(str)
+  print(str)
+  --error("error...")
 end
 
-if pcall(hello, "hello") then 
-    -- 没有错误
-    print("没有错误!!")
-else 
-    -- 一些错误
-    print("发现错误!!")
+if pcall(hello, "hello") then
+  -- 没有错误
+  print("没有错误!!")
+else
+  -- 一些错误
+  print("发现错误!!")
 end
 
 -------------------------------------------------------------------------------------
 local msg, errorinfo = pcall(
-      function(i) 
-          print(i) 
-          error("error..", 2) 
-      end, 
-"pcall")
+  function(i)
+    print(i)
+    error("error..", 2)
+  end,
+  "pcall")
 
 print(msg, errorinfo)
 -------------------------------------------------------------------------------------
 local xmsg = xpcall(
-    function(i)
-        print(i)
-        error("error..")
-    end,
-    function()
-        print(debug.traceback())
-    end,
-"xpcall")
+  function(i)
+    print(i)
+    error("error..")
+  end,
+  function(err)
+    print("--> " .. err)
+    print(debug.traceback())
+  end,
+  "xpcall")
 print(xmsg)
 
 -------------------------------------------------------------------------------------
-function myfunction()
-    n = n/nil
+local function myfunction(n)
+  n = n / nil
+  return n
 end
 
-function myerrorhandle(err)
-    print("ERROR:", err)
+local function myerrorhandle(err)
+  print("ERROR:", err)
 end
 
-status = xpcall(myfunction, myerrorhandle)
+local status = xpcall(myfunction, myerrorhandle)
 print(status)
