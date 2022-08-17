@@ -47,3 +47,14 @@ if x < 3 then
   x = x + 1
   goto again
 end
+
+
+--- lua 中没有 continue 语句，为了方便再循环中可以实现对应的功能，在 5.1 之后
+--- 可以通过关键字 goto 实现标签位置的跳转，可以起到对应的 continue 的效果
+for i = 1, 10 do
+  if i == 7 then
+    goto continue
+  end
+  print(i)
+  ::continue::
+end
