@@ -23,7 +23,7 @@
 ---------------------------------------------------------------------------------------
 
 -- 只读方式打开文件
-local file = io.open("io/file/test.txt", "r")
+local file = assert(io.open("io/file/test.txt", "r"))
 
 -- 设置默认的输入文件
 io.input(file)
@@ -35,7 +35,7 @@ print(io.read())
 io.close(file)
 
 -- 以附加的方式打开只读文件
-file = io.open("io/file/test.txt", "a")
+file = assert(io.open("io/file/test.txt", "a"))
 
 --设置默认输出文件为test.lua
 io.output(file)
@@ -57,11 +57,7 @@ if pfile ~= nil then
 end
 
 local wfile = io.open("io/file/text.log", "a")
-
 if wfile ~= nil then
-  io:write("test total mode append content to file")
-  io:close()
+  wfile:write("test total mode append content to file")
+  wfile:close()
 end
-
-
-
