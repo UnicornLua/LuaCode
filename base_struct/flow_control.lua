@@ -17,9 +17,9 @@
 --]]
 
 if 2 < 3 then
-  print("2 < 3")
+	print("2 < 3")
 elseif 2 == 3 then
-  print("2=3")
+	print("2=3")
 else
-  print("2 > 3")
+	print("2 > 3")
 end

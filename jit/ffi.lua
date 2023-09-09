@@ -10,7 +10,7 @@
 -- 调用动态库里的函数，从而轻松的扩展 lua 的功能。
 --
 --
---       noun    |    Explanation 
+--       noun    |    Explanation
 -----------------------------------------------------------------------------------
 --    >  cdecl   |   A definition of an abstract C type (actually, is a lua string)
 --    >  ctype   |   C type object
@@ -21,9 +21,7 @@
 --    >  VLS     |   An structure of variable length
 --
 --]]
-
-
-
+--
 -- 1. FFi.API
 
 
@@ -53,7 +51,7 @@ ffi.cdef [[
 -----------------------------------------------------------------------
 --  then compiler a shared library
 --
---  >$ gcc -g -c -o libmath.so  -fpic -shared math.c
+--  >$ gcc -g -c -o libmath.so  -fpic -shared math.cpp
 --  >$ mv libmath.so /usr/lib64/
 --
 -- ]]

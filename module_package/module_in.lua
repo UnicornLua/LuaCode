@@ -25,7 +25,7 @@ lua 中模块加载顺序：
 -- 一般编程语言与 C 语言交互，调用 C 语言 的函数库最简单的方式就是使用动态连接库的方式，
 -- lua 在 loadlib() 的函数内部提供了所有的动态连接功能，这个函数有两个参数
   （库的绝对路径, 初始化函数）典型的调用例子是:
-  
+
    local path = "/usr/local/lib/libluasocket.so"
    local f = loadlib(path,"luaopen_socket")
 
@@ -34,7 +34,7 @@ lua 中模块加载顺序：
   * 如果加载动态库或者查找初始化函数出错，loadlib 将返回 nil 和错误信息，
 -------------------------------------------------------------------------------------
   一般实际使用的时候，我们期望二进制的发布库包含一个stub 文件，安装二进制库的时候可以安装
-  在任意合适的目录，使用的时候只需要修改 stub  文件中对应的二进制库的实际位置，然后将stub 
+  在任意合适的目录，使用的时候只需要修改 stub  文件中对应的二进制库的实际位置，然后将stub
   文件所在的位置加载到·LUA_PATH· 中，require 函数可直接加载到。
 
 --]]
@@ -43,4 +43,9 @@ local module = require("module_package.module_out")
 
 module.say()
 
-print(package.path)
+-- print(package.path)
+
+local code = require("module_package.code")
+code.setup()
+code.init()
+code.config()
