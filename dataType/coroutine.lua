@@ -14,7 +14,7 @@
 --
 --  3. coroutine.yield()  挂起 coroutine, 将 coroutine 设置为挂起状态，这个函数与 resume() 配合使用的时候可以
 --                        实现很多高级的效果
---  4. coroutine.status() 查看 coroutine 的状态，coroutine 的状态有三种 `dead`, `suspended`, `running` 
+--  4. coroutine.status() 查看 coroutine 的状态，coroutine 的状态有三种 `dead`, `suspended`, `running`
 --
 --  5. coroutine.wrap()   创建一个 coroutine, 返回一个函数, 一但你调用这个函数，就进入 coroutine，和 create 类似
 --
@@ -23,10 +23,9 @@
 --
 --]]
 
-
 local function sum(num1, num2)
-  print(coroutine.running())
-  print(num1 + num2)
+	print(coroutine.running())
+	print(num1 + num2)
 end
 
 -- 1.使用一个函数参数创建一个协程
@@ -39,20 +38,18 @@ coroutine.resume(co, 2, 3)
 local cw = coroutine.wrap(sum)
 cw(10, 20)
 
-
-
 -- 协程中配 resume 与 yield 配合使用
 print("-----------------------------------------------------")
-so = coroutine.create(function()
-  for i = 1, 10 do
-    print(i)
-    if i == 4 then
-      print(coroutine.status(so))
-      print(coroutine.running())
-    end
-    coroutine.yield()
-  end
-end);
+local so = coroutine.create(function()
+	for i = 1, 10 do
+		print(i)
+		if i == 4 then
+			print(coroutine.status(so))
+			print(coroutine.running())
+		end
+		coroutine.yield()
+	end
+end)
 
 coroutine.resume(so)
 coroutine.resume(so)
@@ -65,23 +62,21 @@ print(coroutine.status(so))
 print(coroutine.running())
 print("-----------------------------------------------------")
 
-
-
 -- 测试协程执行过程中参数的传递
 local function foo(a)
-  print("foo 函数输入: " .. a)
-  return coroutine.yield(a * 2)
+	print("foo 函数输入: " .. a)
+	return coroutine.yield(a * 2)
 end
 
 local cot = coroutine.create(function(a, b)
-  print(("第一次协程执行输出: %d-%d"):format(a, b))
-  local r = foo(a + 1)
+	print(("第一次协程执行输出: %d-%d"):format(a, b))
+	local r = foo(a + 1)
 
-  print("第二次协程接收参数：" .. r)
-  local s, z = coroutine.yield(a + b, a - b)
+	print("第二次协程接收参数：" .. r)
+	local s, z = coroutine.yield(a + b, a - b)
 
-  print("第三次协程接收参数： ", s, z)
-  return b, "end"
+	print("第三次协程接收参数： ", s, z)
+	return b, "end"
 end)
 
 print("main", coroutine.resume(cot, 1, 10))

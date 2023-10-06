@@ -24,20 +24,17 @@
 --
 -- 1. FFi.API
 
-
 local ffi = require("ffi")
 
 -- this is a function to load library of c code
 -- which could search `libmath.so` (in Unix) or `math.dll` (in windows) in system dynanic library
 ffi.load("math", true)
 
-
-ffi.cdef [[
+ffi.cdef([[
 
   int add(int x, int y);  /* This is a declare of c function */
 
-]]
-
+]])
 
 -- repare a file to generate libmath.so file and put into system library
 -- [[
@@ -55,7 +52,6 @@ ffi.cdef [[
 --  >$ mv libmath.so /usr/lib64/
 --
 -- ]]
-
 
 -- 在此就可调用 已经写好的 C 语言写好的动态库文件
 local result = ffi.C.add(10, 20)

@@ -10,7 +10,7 @@
 --
 -- ]]
 
-local name = 'alex'
+local name = "alex"
 local gender = "maria"
 
 local html = [[
@@ -34,16 +34,16 @@ print("----------------------------------------------------")
 
 -- 数字字符串会进行数学运算
 
-print("2" + '6') -- 8.0
+print("2" + "6") -- 8.0
 
-print('2e2' * 5) -- 1000.0
+print("2e2" * 5) -- 1000.0
 
-print('2 + 6')
+print("2 + 6")
 
 -- 字符串之间的拼接运算使用的是 ..
 
-print('2' .. '6') -- 26
-print('error:' .. '2009')
+print("2" .. "6") -- 26
+print("error:" .. "2009")
 
 print("----------------------------------------------------")
 
@@ -52,8 +52,7 @@ print("----------------------------------------------------")
 print(#name)
 print(#gender)
 print(#html)
-print(#'hello world')
-
+print(#"hello world")
 
 --[[
 -------------------------------------------------------------------------------------
@@ -99,14 +98,14 @@ print(#'hello world')
 print(string.upper("hello"))
 print(string.lower("hello"))
 -- 3
-print(string.gsub("tomorrow", 'o', 'e'))
-print(string.gsub("tomorrow", 'o', 'e', 2))
+print(string.gsub("tomorrow", "o", "e"))
+print(string.gsub("tomorrow", "o", "e", 2))
 -- 4
-print(string.find("hi young man,hi young man", 'oun', 5))
+print(string.find("hi young man,hi young man", "oun", 5))
 -- 5
 print(string.reverse("lua"))
 -- 6
-print(string.format('values length: %d', #'values'))
+print(string.format("values length: %d", #"values"))
 -- 7
 print(string.len("anonymous"))
 -- 8
@@ -118,14 +117,14 @@ print(string.byte("abcd", -2)) -- 转换倒数第二个
 print(string.char(255))
 print(string.char(0))
 -- 9
-print(string.rep('o-^-o\n', 10))
+print(string.rep("o-^-o\n", 10))
 -- 10
-for word in string.gmatch("Hello lua user", '%a+') do
-  print(word)
+for word in string.gmatch("Hello lua user", "%a+") do
+	print(word)
 end
 -- 11
-print(string.match("I have 2 question for you", '%d+ %a+'))
-print(string.match("I have 2 question for you", '(%d+) (%a+)'))
+print(string.match("I have 2 question for you", "%d+ %a+"))
+print(string.match("I have 2 question for you", "(%d+) (%a+)"))
 
 -- 12
 print(string.sub("long long ago", 6, 8)) -- 6-8 号子串

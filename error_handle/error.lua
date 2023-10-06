@@ -36,48 +36,43 @@
 --]]
 
 local function hello(str)
-  print(str)
-  --error("error...")
+	print(str)
+	--error("error...")
 end
 
 if pcall(hello, "hello") then
-  -- 没有错误
-  print("没有错误!!")
+	-- 没有错误
+	print("没有错误!!")
 else
-  -- 一些错误
-  print("发现错误!!")
+	-- 一些错误
+	print("发现错误!!")
 end
 
 -------------------------------------------------------------------------------------
-local msg, errorinfo = pcall(
-  function(i)
-    print(i)
-    error("error..", 2)
-  end,
-  "pcall")
+local msg, errorinfo = pcall(function(i)
+	print(i)
+	error("error..", 2)
+end, "pcall")
 
 print(msg, errorinfo)
 -------------------------------------------------------------------------------------
-local xmsg = xpcall(
-  function(i)
-    print(i)
-    error("error..")
-  end,
-  function(err)
-    print("--> " .. err)
-    print(debug.traceback())
-  end,
-  "xpcall")
+local xmsg = xpcall(function(i)
+	print(i)
+	error("error..")
+end, function(err)
+	print("--> " .. err)
+	print(debug.traceback())
+end, "xpcall")
 print(xmsg)
 
 -------------------------------------------------------------------------------------
 local function myfunction(n)
-  n = n / nil
-  return n
+	n = n / nil
+	return n
 end
 
 local function myerrorhandle(err)
-  print("ERROR:", err)
+	print("ERROR:", err)
 end
 
 local status = xpcall(myfunction, myerrorhandle)

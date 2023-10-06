@@ -29,17 +29,15 @@
 --
 --]]
 
-
-
 -- 1. 手动调用 collectgarbage 来收集垃圾
 
-print(collectgarbage('count'))
+print(collectgarbage("count"))
 
 -- 声明一个表之后查看内存占用情况
-local _ = { "apple", "banana", "pear", "peach", 'strawbbery' }
+local _ = { "apple", "banana", "pear", "peach", "strawbbery" }
 
 -- 返回占用的内存，以 k字节为单位返回，lua 占用的总内存数
-print(collectgarbage('count'))
+print(collectgarbage("count"))
 
 -- 进行一次完整的垃圾收集
 collectgarbage("collect")
@@ -54,5 +52,4 @@ print(collectgarbage("count"))
 -- 调用这个函数之后，直到再次调用重启 restart 之前，需要手动调用垃圾回收才会进行回收
 collectgarbage("stop")
 
-
--- 
+--

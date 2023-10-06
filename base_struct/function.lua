@@ -11,7 +11,6 @@
 --
 --]]
 
-
 -- 1、函数定义
 --
 -- optional_function_scope function function_name( argument1, argument2, argument3..., argumentn)
@@ -33,16 +32,15 @@
 --
 
 local function print_some(str)
-  print("==> " .. str .. " <==")
+	print("==> " .. str .. " <==")
 end
 
 local function add(num1, num2, printer)
-  local result = num1 + num2
-  printer(result)
+	local result = num1 + num2
+	printer(result)
 end
 
 add(10, 7, print_some)
-
 
 -----------------------------------------------------------------------------------------
 -- 函数返回多个值
@@ -50,7 +48,7 @@ add(10, 7, print_some)
 -- string.find(str,pattern) 返回匹配的起始和结束的下标
 --
 print("-----------------")
-local s, e = string.find('www.runoob.com', 'runoob')
+local s, e = string.find("www.runoob.com", "runoob")
 print(("result: %d - %d"):format(s, e))
 
 -----------------------------------------------------------------------------------------
@@ -59,28 +57,27 @@ print(("result: %d - %d"):format(s, e))
 -- 固定参数和可变参数一起使用的时候，固定参数放在可变参数的前面
 
 function add(...)
-  local start = 0
-  for _, v in ipairs { ... } do -- {...} 表示一个由所有变量组成的数组
-    start = start + v
-  end
-  return start
+	local start = 0
+	for _, v in ipairs({ ... }) do -- {...} 表示一个由所有变量组成的数组
+		start = start + v
+	end
+	return start
 end
 
 print(add(1, 2, 3, 4, 5, 6, 7, 8, 9))
 
-
 -- 可变参数可以使用变量进行接收
 
 local function average(...)
-  local result = 0
-  local arg = { ... } -- arg 为一个表，局部变量
-  for _, v in ipairs(arg) do
-    result = result + v
-  end
-  -- print("总共传入 ".. #arg .. " 个数")
-  -- 可以使用select("#",...) 获取参数的长度
-  print("总共传入 " .. select("#", ...) .. " 个数")
-  return result / select("#", ...)
+	local result = 0
+	local arg = { ... } -- arg 为一个表，局部变量
+	for _, v in ipairs(arg) do
+		result = result + v
+	end
+	-- print("总共传入 ".. #arg .. " 个数")
+	-- 可以使用select("#",...) 获取参数的长度
+	print("总共传入 " .. select("#", ...) .. " 个数")
+	return result / select("#", ...)
 end
 
 print("平均值为: " .. average(1, 2, 3, 4, 5, 6, 7, 8, 9))
@@ -91,9 +88,9 @@ print("平均值为: " .. average(1, 2, 3, 4, 5, 6, 7, 8, 9))
 --select(n,...) 返回的是 n 开始到结束位置的所有参数列表
 
 local function f(...)
-  local a = select(3, ...)
-  print(a) -- a 获取的是参数列表中最左侧的第一个，其余被忽略
-  print(select(3, ...)) -- 打印 3和之后的所有的参数列表
+	local a = select(3, ...)
+	print(a) -- a 获取的是参数列表中最左侧的第一个，其余被忽略
+	print(select(3, ...)) -- 打印 3和之后的所有的参数列表
 end
 
 f(0, 1, 2, 3, 4, 5)
@@ -102,21 +99,20 @@ f(0, 1, 2, 3, 4, 5)
 -- 实例
 --
 do
-  local function foo(...)
-    for i = 1, select("#", ...) do -- 获取参数总数
-      local arg = select(i, ...) -- 获取参数列表中从 i 开始的第一个
-      print("arg: ", arg)
-    end
-  end
+	local function foo(...)
+		for i = 1, select("#", ...) do -- 获取参数总数
+			local arg = select(i, ...) -- 获取参数列表中从 i 开始的第一个
+			print("arg: ", arg)
+		end
+	end
 
-  foo(1, 2, 3, 5)
+	foo(1, 2, 3, 5)
 end
-
 
 -- 函数返回值的接收，
 
 local function init()
-  return 1, 'lua'
+	return 1, "lua"
 end
 
 -- 当返回多个值的函数在使用的时候，如果其所在的位置不在末尾，只能接收到返回值的第一位

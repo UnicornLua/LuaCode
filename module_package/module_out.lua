@@ -11,8 +11,7 @@
 --
 --]]
 
-
-module = {}
+local module = {}
 
 -- 定义一个常量
 module.constant = "ONE,TWO,ThREE,FOUR"
@@ -20,21 +19,18 @@ module.constant = "ONE,TWO,ThREE,FOUR"
 -- 定义一个函数
 
 function module.hello()
-    io.write("hello lua")
+	io.write("hello lua")
 end
 
 -- 这是一个私有的函数，是不能通过外部来进行调用的
 local function rich()
-    print("this is privacy rich!")
+	print("this is privacy rich!")
 end
 
 function module.say()
-    -- 在当前模块的内部，共有的函数是可以进行私有函数的调用的
-    rich()
+	-- 在当前模块的内部，共有的函数是可以进行私有函数的调用的
+	rich()
 end
 
 -- 将这个 module 返回出去，这样在其他按模块中就可以引入了
 return module
-
-
-

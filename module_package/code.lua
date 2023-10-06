@@ -1,15 +1,15 @@
 local M = {}
 
 M.config = function()
-  print("config")
+	print("config")
 end
 
 M.init = function()
-  print("init")
+	print("init")
 end
 
 M.setup = function()
-  print("setup")
+	print("setup")
 end
 
 return M

@@ -13,38 +13,36 @@
 local tab = {}
 print(type(tab))
 
-
 -- 直接初始化表
-local tabinit = { 'apple', 'pear', 'orager', 'grape' }
+local tabinit = { "apple", "pear", "orager", "grape" }
 
 print("-----------------------------------------")
 
 local a = {}
 
-a['key'] = 'value'
+a["key"] = "value"
 local key = 10
 a[key] = 22
 a[key] = a[key] + 11
 for k, v in pairs(a) do
-  print(k .. '-' .. v)
+	print(k .. "-" .. v)
 end
 
 -- 不同于其他语言 lua 中将表中的下标从 1 开始
 
 for k, _ in pairs(tabinit) do
-  print("key", k)
+	print("key", k)
 end
-
 
 -- table 不会固定长度大小，有新长度添加时table 会自动增长，没初始的 table 都是 nil
 
 local lentable = {}
 for i = 1, 10, 2 do
-  lentable[i] = i
+	lentable[i] = i
 end
-lentable['key'] = 'val'
-print(lentable['key'])
-print(lentable['none'])
+lentable["key"] = "val"
+print(lentable["key"])
+print(lentable["none"])
 
 ----------------------------------------------------------
 --
@@ -58,5 +56,3 @@ print(lentable['none'])
 print(lentable[5])
 print(lentable[2])
 print(lentable.key)
-
-

@@ -19,25 +19,25 @@
 --
 --]]
 
-A = 5         -- 全局变量
-local b = 10  -- 局部变量
+A = 5 -- 全局变量
+local b = 10 -- 局部变量
 
-print(A,b)
+print(A, b)
 
 local function joke()
-    C = 5          -- 全局变量
-    local d = 10   -- 局部变量
+	C = 5 -- 全局变量
+	local d = 10 -- 局部变量
 end
 
 joke()
 
-print(C,d)         -- 5,nil
+print(C, d) -- 5,nil
 
 -------------------------------
 do
-    local a = 6    -- 局部变量
-    b = 6
-    print(a,b)
+	local a = 6 -- 局部变量
+	b = 6
+	print(a, b)
 end
 
 print(a, b)
@@ -45,17 +45,17 @@ print(a, b)
 ---------------------------------------
 -- 赋值是改变变量和改变域的最基本的方法
 
-local a = 'hello'..'world'
+local a = "hello" .. "world"
 
 --可以单次给多个变量赋值，右侧会依次给左侧变量赋值, 各变量，值之间用逗号隔开
 --当变量的数量多余赋值的数量，多余的变量全部是 nil
 --当变量的数量少于赋值的数量，多余的数值会被忽略
 
-local x, y, z = 'alex', false, 20, 40
+local x, y, z = "alex", false, 20, 40
 
-local d = 'dux','78'
+local d = "dux", "78"
 
-print(x,y,z)
+print(x, y, z)
 print(d)
 
 --------------------------------------
@@ -64,17 +64,17 @@ print(d)
 -- a, b = b, a
 
 local o, p = 5, 6
-print(o,p)
+print(o, p)
 o, p = p, o
-print(o,p)
+print(o, p)
 
 -------------------------------------
 -- 多值赋值常见的用法是交换变量，或用变量接收函数的返回值
 --
 local function hobby()
-    return 'basketball','football'
+	return "basketball", "football"
 end
 
-local h,i = hobby()
+local h, i = hobby()
 
 print(h, i)
