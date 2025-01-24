@@ -17,3 +17,5 @@ local alex = dog:new()
 
 alex:work()
 alex:eat(" buck")
+alex:sleep()
+
