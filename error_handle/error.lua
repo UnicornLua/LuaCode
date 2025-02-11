@@ -49,21 +49,27 @@ else
 end
 
 -------------------------------------------------------------------------------------
-local msg, errorinfo = pcall(function(i)
-	print(i)
-	error("error..", 2)
-end, "pcall")
+--- 返回执行状态 和错误信息
+local ok, errorinfo = pcall(
+  function(i)
+    print(i)
+    error("error..", 2)
+  end,
+  "pcall")
 
-print(msg, errorinfo)
+print(ok, errorinfo)
 -------------------------------------------------------------------------------------
-local xmsg = xpcall(function(i)
-	print(i)
-	error("error..")
-end, function(err)
-	print("--> " .. err)
-	print(debug.traceback())
-end, "xpcall")
-print(xmsg)
+local status = xpcall(
+  function(i)
+    print(i)
+    error("error..")
+  end,
+  function(err)
+    print("--> " .. err)
+    print(debug.traceback())
+  end,
+  "xpcall")
+print(status)
 
 -------------------------------------------------------------------------------------
 local function myfunction(n)
@@ -75,5 +81,5 @@ local function myerrorhandle(err)
 	print("ERROR:", err)
 end
 
-local status = xpcall(myfunction, myerrorhandle)
-print(status)
+local state = xpcall(myfunction, myerrorhandle)
+print(state)
