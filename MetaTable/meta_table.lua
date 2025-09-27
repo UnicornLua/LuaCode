@@ -79,7 +79,7 @@ local tab1 = { 1, 4, 8 }
 local tab2 = { 2 }
 
 setmetatable(tab1, metatable) -- 把 mymetatable 设为 mytable 的元表
-print(getmetatable(tab1)) -- 这回返回mymetatable
+print(getmetatable(tab1))     -- 这回返回mymetatable
 
 -- 这样的行为需要自定义原表行为来操作，语言内部没有指定两个表之间的操作
 -- 我们在原表中定义了__add  行为，这里的 `+` 才能在底层调用 __add 来完成对应的操作

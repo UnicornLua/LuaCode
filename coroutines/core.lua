@@ -18,11 +18,11 @@ function core.create(f)
   return coroutine.create(co)
 end
 
-function core.transfer(co, ...) 
+function core.transfer(co, ...)
   local parameter = table.unpack({...})
   while co do
     if core.current == core.main then
-      if co == core.main then 
+      if co == core.main then
         return
       end
       core.current = co
