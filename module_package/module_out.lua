@@ -14,7 +14,7 @@
 local module = {}
 
 -- 定义一个常量
-module.constant = "ONE,TWO,ThREE,FOUR"
+module.constant = "ONE,TWO,THREE,FOUR"
 
 -- 定义一个函数
 

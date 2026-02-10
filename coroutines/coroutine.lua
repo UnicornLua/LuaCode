@@ -25,7 +25,8 @@
 
 local function sum(num1, num2)
 	print(coroutine.running())
-	print(num1 + num2)
+	local x, y = coroutine.yield(num1 + num2)
+	return x + y 
 end
 
 -- 1.使用一个函数参数创建一个协程
@@ -35,12 +36,18 @@ local co = coroutine.create(sum)
 coroutine.resume(co, 2, 3)
 
 -- 2.创建协程的第二种方式，这种方式创建的协程，可以直接传递参数启动
+--
+-- 使用 coroutine.wrap 创建了一个协同程序包装器，将协同程序函数转换为一个可直接调用的函数对象
 local cw = coroutine.wrap(sum)
-cw(10, 20)
+print(cw(10, 20))
+print(cw(1, 2))
 
 -- 协程中配 resume 与 yield 配合使用
+--
 print("-----------------------------------------------------")
-local so = coroutine.create(function()
+-- 创建了另一个协同程序对象 co2，其中的协同程序函数通过循环打印数字 1 到 10，
+-- 在循环到 4 的时候输出当前协同程序的状态和正在运行的线程
+so = coroutine.create(function()
 	for i = 1, 10 do
 		print(i)
 		if i == 4 then
